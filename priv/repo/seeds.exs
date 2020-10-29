@@ -24,7 +24,7 @@ map_params = [
     email: "manager@server.com",
     password: "manager_9265Z3o75ds",
     is_manager: true
-  }
+  },
   %{
     email: "user@server.com",
     password: "user_33g7b531cs",
