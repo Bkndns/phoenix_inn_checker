@@ -22,7 +22,7 @@ config :inn_checker,
   redis_port: 25429,
   redis_database: nil,
   redis_password: "p3d58396416900fb1cbaa16337d7648243d0ee6e5ff2150b150bf4ab4041eea75",
-  redis_name: :redix
+  redis_name: :redixo
 
 config :inn_checker, InnChecker.Guardian,
   issuer: "inn_checker",
