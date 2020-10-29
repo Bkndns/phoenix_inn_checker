@@ -10,19 +10,36 @@ Elixir / Phoenix приложение которое проверяет ИНН �
 Процесс установки и запуска достаточно прост.
 На компьютере должен быть установлен **Erlang и Elixir** , а также **Postgres и Redis**
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `npm install` inside the `assets` directory
-  * Start Phoenix endpoint with `mix phx.server`
+* Шаг 1 - склонировать репозиторий
+``` 
+git clone https://github.com/Bkndns/phoenix_inn_checker.git
+```
+* Шаг 2 - установить все зависимости 
+```
+mix deps.get
+```
+* Шаг 3 - запустить миграции
+```
+mix ecto.create
+mix ecto.migrate
+```
+* Шаг 4 - запустить seeds
+```
+mix run priv/repo/seeds.exs
+```
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+После этого можно открыть страницу [`localhost:4000`](http://localhost:4000) в браузере.
+```
+http://localhost:4000
+```
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+*На этом установка и запуск завершена.*
+***
+### Примечания
 
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+  * #### [Quick Demo](https://agile-fjord-12058.herokuapp.com/)
+  * Эта сборка использует *redis && postgres*
+  * Ссылка на демо парсера
+  * Ссылка на гитхаб парсера
+  * Ссылка на гитхаб Граф куэл
+  * Другое
