@@ -20,7 +20,8 @@ defmodule InnChecker.Application do
       # Handler INN Checker Supervisor
       {InnChecker.Checker.HandlerSupervisor, []},
       # Redix Start host: @host, port: @port, database: @database, password: @password,
-      {InnChecker.RedixSupervisor, []},
+      {Redix, name: :redix},
+      # {InnChecker.RedixSupervisor, []},
       {InnChecker.Redis, []}
     ]
 
