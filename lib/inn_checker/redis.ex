@@ -7,10 +7,6 @@ defmodule InnChecker.Redis do
   @block_table "block_ips"
 
   # REDIX CONFIG
-	@host Application.get_env(:inn_checker, :redis_host)
-	@port Application.get_env(:inn_checker, :redis_port)
-	# @database Application.get_env(:inn_checker, :redis_database)
-	@password Application.get_env(:inn_checker, :redis_password)
 	@name Application.get_env(:inn_checker, :redis_name)
 
   '''
@@ -23,15 +19,14 @@ defmodule InnChecker.Redis do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
 
-  def init(init_arg) do
-    Redix.start_link(
-      host: @host,
-      port: @port,
-      password: @password,
-      name: @name
-    )
+  def init({url}) do
+    Logger.info("connect to url #{url}");
+    case Redix.start_link(url, name: @name) do
+      {:ok, conn} -> {:ok, conn}
+      {:error, err} -> {:error, err}
+    end
     schedule_work()
-    {:ok, init_arg}
+    {:ok, {url}}
   end
 
   # CLIENT
@@ -74,7 +69,7 @@ defmodule InnChecker.Redis do
       Logger.info("#{ip} Unblock.", ansi_color: :green)
     end)
 
-    Logger.info("Check block IP. Access app at http://localhost:4000", ansi_color: :green)
+    Logger.info("Check block IP. Since 1 minute", ansi_color: :green)
 
     schedule_work()
 

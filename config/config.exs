@@ -22,7 +22,8 @@ config :inn_checker,
   redis_port: 25429,
   redis_database: nil,
   redis_password: "p3d58396416900fb1cbaa16337d7648243d0ee6e5ff2150b150bf4ab4041eea75",
-  redis_name: :redixo
+  redis_name: :redixi,
+  redis_url: "redis://h:p3d58396416900fb1cbaa16337d7648243d0ee6e5ff2150b150bf4ab4041eea75@ec2-54-227-196-98.compute-1.amazonaws.com:25429"
 
 config :inn_checker, InnChecker.Guardian,
   issuer: "inn_checker",

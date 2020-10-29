@@ -22,7 +22,7 @@ defmodule InnChecker.Application do
       # Redix Start host: @host, port: @port, database: @database, password: @password,
       # {Redix, name: :redix},
       # {InnChecker.RedixSupervisor, []},
-      {InnChecker.Redis, []}
+      {InnChecker.Redis, {Application.get_env(:inn_checker, :redis_url)}}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
