@@ -44,16 +44,13 @@ defmodule InnChecker.Checker.Helper do
   end
 
   def get_user_ip(conn) do
-    IO.inspect(conn.assigns, label: "GET USER IP FUNCTION")
-    # forwarded_for = List.first(conn, "x-forwarded-for")
+    headers = conn.assigns.ip_address.x_headers
+    forwarded_for = List.first(headers)
 
-    # if forwarded_for do
-    #   String.split(forwarded_for, ",")
-    #   |> Enum.map(&String.trim/1)
-    #   |> List.first()
-    # else
-    #   conn.remote_ip |> :inet.ntoa() |> to_string()
-    # end
+    if forwarded_for do
+      {_, ip} = forwarded_for
+      ip
+    end
   end
 
   def get_ip_address(%{x_headers: headers_list}) do
