@@ -53,7 +53,7 @@ defmodule InnCheckerWeb.InnCheckChannel do
 
   defp get_ip_socket_address(socket) do
     # ip_address = socket.assigns.ip_address.peer_data.address |> :inet.ntoa() |> to_string()
-    ip_address = Helper.get_user_ip(socket)
+    ip_address = Helper.get_ip_address(socket)
     ip_address
   end
 

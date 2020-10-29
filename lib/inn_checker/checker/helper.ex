@@ -55,8 +55,8 @@ defmodule InnChecker.Checker.Helper do
     end
   end
 
-  def get_ip_address(%{x_headers: headers_list}) do
-    header = Enum.find(headers_list, fn {key, _val} -> key == "x-real-ip" end)
+  def get_ip_address(%{x_headers: headers_list} = _socket) do
+    header = Enum.find(headers_list, fn {key, _val} -> key == "x-forwarded-for" end)
 
     case header do
       nil -> nil
