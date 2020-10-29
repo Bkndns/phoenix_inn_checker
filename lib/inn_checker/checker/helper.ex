@@ -44,7 +44,7 @@ defmodule InnChecker.Checker.Helper do
   end
 
   def get_user_ip(conn) do
-    IO.inspect(conn.assign, label: "GET USER IP FUNCTION")
+    IO.inspect(conn.assigns, label: "GET USER IP FUNCTION")
     # forwarded_for = List.first(conn, "x-forwarded-for")
 
     # if forwarded_for do
