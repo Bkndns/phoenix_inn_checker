@@ -16,7 +16,7 @@ defmodule InnChecker.RedixSupervisor do
 
 	def init(_) do
 		children = [
-      worker(Redix, [[@redix_url, name: @name]])
+      worker(Redix, [[name: @name]])
       # worker(Redix, [[host: @host, port: @port, database: @database, password: @password, name: @name]])
 		]
 
