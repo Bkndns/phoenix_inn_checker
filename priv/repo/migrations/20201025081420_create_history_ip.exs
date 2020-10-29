@@ -3,7 +3,7 @@ defmodule InnChecker.Repo.Migrations.CreateHistoryIp do
 
   def change do
     alter table(:inn_history) do
-      add :ip, :string, size: 15
+      add :ip, :string, size: 20
     end
 
   end
