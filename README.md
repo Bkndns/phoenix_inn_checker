@@ -37,6 +37,12 @@ mix ecto.migrate
 ```
 mix run priv/repo/seeds.exs
 ```
+* Шаг 5 - запустить сервер
+```
+mix phx.server
+или
+iex -S mix phx.server
+```
 
 После этого можно открыть страницу [`localhost:4000`](http://localhost:4000) в браузере.
 ```
