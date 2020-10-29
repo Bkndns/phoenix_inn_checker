@@ -14,6 +14,7 @@ defmodule InnCheckerWeb.Endpoint do
   #   websocket: true,
   #   longpoll: false
   socket("/socket", InnCheckerWeb.UserSocket,
+    websocket: [timeout: 45_000],
     websocket: [connect_info: [:peer_data, :x_headers]],
     longpoll: [connect_info: [:peer_data, :x_headers]]
   )
