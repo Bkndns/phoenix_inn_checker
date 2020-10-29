@@ -10,20 +10,20 @@ use Mix.Config
 config :inn_checker,
   ecto_repos: [InnChecker.Repo]
 
-# config :inn_checker,
-#   redis_host: "localhost",
-#   redis_port: 6379,
-#   redis_database: nil,
-#   redis_password: nil,
-#   redis_name: :redix
-
 config :inn_checker,
-  redis_host: "ec2-54-198-175-32.compute-1.amazonaws.com",
-  redis_port: 25429,
+  redis_host: "localhost",
+  redis_port: 6379,
   redis_database: nil,
-  redis_password: "p3d58396416900fb1cbaa16337d7648243d0ee6e5ff2150b150bf4ab4041eea75",
-  redis_name: :redixi,
-  redis_url: "redis://h:p3d58396416900fb1cbaa16337d7648243d0ee6e5ff2150b150bf4ab4041eea75@ec2-54-227-196-98.compute-1.amazonaws.com:25429"
+  redis_password: nil,
+  redis_name: :redix
+
+# config :inn_checker,
+#   redis_host: "ec2-54-198-175-32.compute-1.amazonaws.com",
+#   redis_port: 25429,
+#   redis_database: nil,
+#   redis_password: "p3d58396416900fb1cbaa16337d7648243d0ee6e5ff2150b150bf4ab4041eea75",
+#   redis_name: :redixi,
+#   redis_url: "redis://h:p3d58396416900fb1cbaa16337d7648243d0ee6e5ff2150b150bf4ab4041eea75@ec2-54-227-196-98.compute-1.amazonaws.com:25429"
 
 config :inn_checker, InnChecker.Guardian,
   issuer: "inn_checker",
