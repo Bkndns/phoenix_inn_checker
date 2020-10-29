@@ -47,11 +47,11 @@ defmodule InnChecker.Checker.Helper do
     headers = conn.assigns.ip_address.x_headers
     forwarded_for = List.first(headers)
 
-    if forwarded_for do
+    if headers == [] do
+      conn.assigns.ip_address.peer_data.address |> :inet.ntoa() |> to_string()
+    else
       {_, ip} = forwarded_for
       ip
-    else
-      conn.assigns.ip_address.peer_data.address |> :inet.ntoa() |> to_string()
     end
   end
 
