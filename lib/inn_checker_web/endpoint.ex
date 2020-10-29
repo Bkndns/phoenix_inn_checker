@@ -13,9 +13,9 @@ defmodule InnCheckerWeb.Endpoint do
   # socket "/socket", InnCheckerWeb.UserSocket,
   #   websocket: true,
   #   longpoll: false
-  socket("/socket", InnCheckerWeb.UserSocket, timeout: 45_000,
-    websocket: [connect_info: [:peer_data, :x_headers]],
-    longpoll: [connect_info: [:peer_data, :x_headers]]
+  socket("/socket", InnCheckerWeb.UserSocket,
+    websocket: [timeout: 45_000, connect_info: [:peer_data, :x_headers]],
+    longpoll: false
   )
 
   # Serve at "/" the static files from "priv/static" directory.
