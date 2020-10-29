@@ -1,6 +1,14 @@
-# InnChecker
+# InnChecker Elixir + Phoenix Проверка ИНН
 
-To start your Phoenix server:
+Elixir / Phoenix приложение которое проверяет ИНН на корректность
+
+#### [Quick Demo](https://agile-fjord-12058.herokuapp.com/)
+
+***
+
+### Установка
+Процесс установки и запуска достаточно прост.
+На компьютере должен быть установлен **Erlang и Elixir** , а также **Postgres и Redis**
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
