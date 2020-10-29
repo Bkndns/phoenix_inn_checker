@@ -6,19 +6,30 @@ defmodule InnChecker.Redis do
   @check_interval 60 * 1000
   @block_table "block_ips"
 
+  # REDIX CONFIG
+	@host Application.get_env(:inn_checker, :redis_host)
+	@port Application.get_env(:inn_checker, :redis_port)
+	# @database Application.get_env(:inn_checker, :redis_database)
+	@password Application.get_env(:inn_checker, :redis_password)
+	@name Application.get_env(:inn_checker, :redis_name)
+
   '''
   alias InnChecker.Redis
   {:ok, pid} = Redis.start_link
   Redis.check(pid)
   '''
 
-  @name Application.get_env(:inn_checker, :redis_name)
-
   def start_link(state \\ []) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
 
   def init(init_arg) do
+    Redix.start_link(
+      host: @host,
+      port: @port,
+      password: @password,
+      name: @name
+    )
     schedule_work()
     {:ok, init_arg}
   end
