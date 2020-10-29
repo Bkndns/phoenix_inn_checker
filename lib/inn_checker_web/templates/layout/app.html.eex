@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>InnChecker - Phoenix Framework</title>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+
+  </head>
+  <body>
+    <header>
+      <section class="container">
+        <nav role="navigation">
+          <ul>
+
+            <%= if @current_user do %>
+
+              <li><%= @current_user.email %></li>
+
+              <%= if Bodyguard.permit?(InnChecker.Inn.Policy, :delete_history, @current_user, true) do %>
+              <li><%= link "Список ИНН", to: Routes.admin_history_path(@conn, :index) %></li>
+              <% end %>
+
+              <%= if Bodyguard.permit?(InnChecker.Blocker.Policy, :block_area, @current_user, true) do %>
+              <li><%= link "Заблокированные IP", to: Routes.admin_block_path(@conn, :index) %></li>
+              <% end %>
+
+              <%= if Bodyguard.permit?(InnChecker.Users.Policy, :user_area, @current_user, true) do %>
+              <li><%= link "Список пользователей", to: Routes.admin_user_path(@conn, :index) %></li>
+              <% end %>
+
+
+              <li><%= link "Выход", to: Routes.session_path(@conn, :delete, @current_user), method: "delete" %></li>
+
+            <% else %>
+
+              <li><%= link "Войти", to: Routes.session_path(@conn, :new) %></li>
+
+            <% end %>
+          </ul>
+
+        </nav>
+        <a href="/" class="phx-logo">
+          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
+        </a>
+      </section>
+    </header>
+    <main role="main" class="container">
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <%= @inner_content %>
+    </main>
+
+    <script src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+
+
+  </body>
+</html>

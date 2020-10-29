@@ -1,0 +1,39 @@
+<h1>ИНН</h1>
+
+<ul>
+
+  <li><strong>ИНН: </strong><%= @history.inn %></li>
+  <li><strong>Дата добавления: </strong><%= Helper.prepare_date(@history.inserted_at) %></li>
+  <li><strong>Статус: </strong><%= Helper.prepate_status(@history.status) %></li>
+
+<%= if Bodyguard.permit?(InnChecker.Inn.Policy, :show_ip, @current_user, @history) do %>
+<li><strong>IP:</strong> <%= @history.ip %></li>
+<% end %>
+
+</ul>
+
+
+<span>
+<%= link "Назад", to: Routes.admin_history_path(@conn, :index) %>
+ |
+<%= if Bodyguard.permit?(InnChecker.Inn.Policy, :delete_history, @current_user, @history) do %>
+  <%= link "Удалить", to: Routes.admin_history_path(@conn, :delete, @history), method: :delete, data: [confirm: "Вы уверены?"] %>
+<% end %>
+
+</span>
+
+
+<hr>
+<span>
+<%= if Bodyguard.permit?(InnChecker.Blocker.Policy, :block_area, @current_user, @former) do %>
+
+  <h2>Заблокировать IP</h2>
+
+  <%= form_for @former, Routes.admin_block_path(@conn, :create), [as: "block_ip"], fn f -> %>
+    <%= select(f, :timestamp, InnCheckerWeb.Admin.UserView.get_select_data(), prompt: "Заблокировать на")%>
+    <%= hidden_input(f, :ip_address, value: @history.ip) %>
+    <%= submit "Заблокировать" %>
+  <% end %>
+
+<% end %>
+</span>

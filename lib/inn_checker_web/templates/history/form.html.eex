@@ -1,0 +1,16 @@
+<%# <%= form_for @changeset, @action, fn f -> %>
+<form id="inn_form">
+
+  <div class="container">Введите ИНН
+    <div class="row">
+      <div class="col">
+        <input type="number" onkeypress="noText()" size="12" placeholder="ИНН" id="history_inn" />
+      </div>
+      <div class="col">
+        <button type="submit">Отправить</button>
+      </div>
+    </div>
+  </div>
+
+</form>
+<%# end %>

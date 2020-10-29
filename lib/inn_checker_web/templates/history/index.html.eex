@@ -1,0 +1,31 @@
+<%= render "form.html", Map.put(assigns, :action, Routes.history_path(@conn, :create)) %>
+
+<div id="errs"></div>
+
+<hr>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Дата</th>
+      <th>ИНН</th>
+      <th>Статус</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="hid">
+  <%= for inn_data <- @history do %>
+    <tr>
+        <td><%= Helper.prepare_date(inn_data.inserted_at) %></td>
+        <td><%= inn_data.inn %></td>
+        <td><%= Helper.prepate_status(inn_data.status) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+function noText() { let nText = parseFloat(event.key); if (isNaN(nText)) { event.preventDefault(); } }
+</script>

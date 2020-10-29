@@ -1,0 +1,29 @@
+<h2>Все заблокированные IP адреса</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>IP</th>
+      <th>Время</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <%= for ban <- @block_list do %>
+    <tr>
+        <td><%= ban.ip %></td>
+        <td>до <%= Helper.prepare_timestamp(ban.timestamp) %></td>
+
+      <td>
+        <span><%= link "Разблокировать", to: Routes.admin_block_path(@conn, :delete, ban.ip), method: :delete, data: [confirm: "Вы уверены?"] %></span>
+      </td>
+    </tr>
+  <% end %>
+
+
+
+
+  </tbody>
+</table>

@@ -1,0 +1,7 @@
+<h1>Список пользователей</h1><ul>
+  <%= for user <- @users do %>
+    <li>
+      <%= link user.email, to: Routes.admin_user_path(@conn, :show, user) %>
+    </li>
+  <% end %>
+</ul>

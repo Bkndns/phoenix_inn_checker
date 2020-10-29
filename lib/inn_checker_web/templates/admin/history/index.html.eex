@@ -1,0 +1,33 @@
+<h2>Все добавленные ИНН</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Дата</th>
+      <th>ИНН</th>
+      <th>Статус</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= for inn_data <- @inn_history do %>
+    <tr>
+        <td><%= Helper.prepare_date(inn_data.inserted_at) %></td>
+        <td><%= inn_data.inn %></td>
+        <td><%= Helper.prepate_status(inn_data.status) %></td>
+
+      <td>
+        <span><%= link "Посмотреть", to: Routes.admin_history_path(@conn, :show, inn_data) %></span>
+
+        <%= if Bodyguard.permit?(InnChecker.Inn.Policy, :delete_history, @current_user, inn_data) do %>
+        <span><%= link "Удалить", to: Routes.admin_history_path(@conn, :delete, inn_data), method: :delete, data: [confirm: "Вы уверены?"] %></span>
+        <% end %>
+
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<span><%= link "Добавить ИНН", to: Routes.history_path(@conn, :index) %></span>
