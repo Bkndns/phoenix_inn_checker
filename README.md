@@ -9,6 +9,8 @@ Elixir / Phoenix приложение которое проверяет ИНН �
 ### Установка
 Процесс установки и запуска достаточно прост.
 На компьютере должен быть установлен **Erlang и Elixir** , а также **Postgres и Redis**
+Блокировать IP может только администратор.
+Блокировка происходит в `Список ИНН > Посмотреть > Форма - Заблокировать IP`. После чего заблокированный IP становиться виден в разделе `Заблокированные IP`
 
 * Шаг 1 - склонировать репозиторий
 ``` 
@@ -39,7 +41,8 @@ http://localhost:4000
 
   * #### [Quick Demo](https://agile-fjord-12058.herokuapp.com/)
   * Эта сборка использует *redis && postgres*
-  * Ссылка на демо парсера
-  * Ссылка на гитхаб парсера
-  * Ссылка на гитхаб Граф куэл
-  * Другое
+  * Elixir Awesome Parser (GitHub) [Elixir Awesome Parser](https://github.com/Bkndns/phoenix_gitsome/)
+  * Elixir Awesome Parser [Quick Demo](https://miniature-loose-blowfish.gigalixirapp.com/)
+  * Elixir GraphQL Test Example [GitHub](https://github.com/Bkndns/elixir_test_graphql_news_and_users)
+  * Elixir Tutorial Project [GitHub](https://github.com/Bkndns/elixir_phoenix_tutorial_project)
+  * Erlang Example Book [GitHub](https://github.com/Bkndns/erlang_learning_examples_files)

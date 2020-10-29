@@ -50,6 +50,8 @@ defmodule InnChecker.Checker.Helper do
     if forwarded_for do
       {_, ip} = forwarded_for
       ip
+    else
+      conn.assigns.ip_address.peer_data.address |> :inet.ntoa() |> to_string()
     end
   end
 

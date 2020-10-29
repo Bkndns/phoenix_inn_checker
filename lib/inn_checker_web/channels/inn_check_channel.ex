@@ -17,8 +17,6 @@ defmodule InnCheckerWeb.InnCheckChannel do
   @impl true
   def handle_in("check_inn", payload, socket) do
     ip_address = get_ip_socket_address(socket)
-    IO.inspect(ip_address, label: "IPPPIIIIPPPPPPPP")
-    IO.inspect(socket, label: "=======================")
 
     if payload["inn"] != "" and is_binary(payload["inn"]) do
 
@@ -66,11 +64,7 @@ defmodule InnCheckerWeb.InnCheckChannel do
 
   defp check_block_datetime(timestamp, data, socket) do
     unix_time = String.to_integer(timestamp)
-    IO.inspect(timestamp, label: "TIIIMESTAAAMP")
-    IO.inspect(unix_time, label: "UNIX XXXX TIIIMESTAAAMP")
-    IO.inspect((DateTime.utc_now() |> DateTime.to_unix), label: "UTC NOWWWWWWWWWWWW")
     if (DateTime.utc_now() |> DateTime.to_unix) > unix_time do
-      IO.inspect(data, label: "DDDDDDDDDDDDAAAAAAAAAATTTTTTTTAAAAAAAAA")
       Block.delete_block(data.ip)
       # Разблокировали и добавляем ИНН
       insert_inn(socket, data)
@@ -82,9 +76,7 @@ defmodule InnCheckerWeb.InnCheckChannel do
   end
 
   defp check_ip_block(socket, ip_address, data) do
-    IO.inspect(ip_address, label: "IIIIIIIIIIIIIIIIIPPPPPPPP________")
     timestamp = Block.check_block(ip_address)
-    IO.inspect(timestamp, label: "CHECK IP BLOCK TIMESTAMP")
     if timestamp != nil do
       check_block_datetime(timestamp, data, socket)
     else
